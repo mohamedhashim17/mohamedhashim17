@@ -31,13 +31,20 @@ AI & ML Student | Python Developer | Full Stack Developer
 
 ## 📂 My Projects
 
-🌱 **Plant Classification**
-🎓 **EduChain – Digital Micro-Scholarship Platform**
-🤖 **AI & ML Projects**
-🚌 **BusBee – Smart Routes**
-💻 **Multi-Student Management System**
-📚 **Student Dashboard**
-🪪 **Student Registration System**
+--🌱 **Plant Classification**
+
+--🎓 **EduChain – Digital Micro-Scholarship Platform**
+
+--🤖 **AI & ML Projects**
+
+--🚌 **BusBee – Smart Routes**
+
+--💻 **Multi-Student Management System**
+
+--📚 **Student Dashboard**
+
+--🪪 **Student Registration System**
+
 ---
 
 ## 📊 GitHub Statistics
