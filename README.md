@@ -13,7 +13,6 @@
 ## 🚀 About Me
 
 <p align="center">
-  <img src="./about.svg" alt="About Me Banner" />
 </p>
 
 - 🎓 B.E. Student at Mohamed Sathak A.J. College of Engineering (Chennai, India)
