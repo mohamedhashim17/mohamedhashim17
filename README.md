@@ -43,6 +43,17 @@
 - 🪪 **Student Registration System**
 
 ---
+---
+
+## 🏆 Certifications
+
+- 🌟 **NPTEL Certified** — *Machine Learning, Deep Learning & Predictive Modelling*
+- 🏅 **One Million Prompters (Prompt Engineering for AI Systems)** — *Dubai Future Foundation & Dubai Centre for Artificial Intelligence*
+- 🛡️ **Cybersecurity & Networking** — *TCS iON (Cybersecurity for Beginners) & Cisco Networking Academy (Networking Basics)*
+- 🤖 **AI & Full-Stack Certifications** — *HP LIFE (AI for Beginners)
+- 🌐 **Networking Basics** — *Cisco Networking Academy (Completed Oct 2026)*[cite: 20]
+  
+---
 
 ## 📊 GitHub Statistics
 
