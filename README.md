@@ -51,9 +51,19 @@
 - 🏅 **One Million Prompters (Prompt Engineering for AI Systems)** — *Dubai Future Foundation & Dubai Centre for Artificial Intelligence*
 - 🛡️ **Cybersecurity & Networking** — *TCS iON (Cybersecurity for Beginners) & Cisco Networking Academy (Networking Basics)*
 - 🤖 **AI & Full-Stack Certifications** — *HP LIFE (AI for Beginners)
-- 🌐 **Networking Basics** — *Cisco Networking Academy (Completed Oct 2026)*[cite: 20]
+- 🌐 **Networking Basics** — *Cisco Networking Academy (Completed Oct 2026)
   
 ---
+---
+
+## 💼 Internships
+
+- 🤖 **Machine Learning & Data Science Intern (8 Weeks)** — *EduSkills Academy (Issued Nov 2026)
+- 🐍 **Python Automation Intern (Research-Oriented)** — *SMNG R&D Cell (Jan–Feb 2026)
+- 🌐 **HTML & CSS Intern (1 Month)** — *EWB Courses (Issued Oct 2026)
+
+---
+
 
 ## 📊 GitHub Statistics
 
