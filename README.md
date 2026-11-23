@@ -2,11 +2,7 @@
   <img src="./header.svg" alt="Header Banner" />
 </p>
 
-<h1 align="center">Hi 👋, I'm Mohamed Hashim M</h1>
 
-<h3 align="center">
-B.E. Student • AI & ML | Python Developer | Full Stack Developer
-</h3>
 
 <p align="center">
   Passionate about Artificial Intelligence, Machine Learning, and building real-world projects.
@@ -20,7 +16,6 @@ B.E. Student • AI & ML | Python Developer | Full Stack Developer
   <img src="./about.svg" alt="About Me Banner" />
 </p>
 
-- 🎓 B.E. Student at Mohamed Sathak A.J. College of Engineering (Chennai, India)
 - 💻 Focused on Artificial Intelligence, Machine Learning & Deep Learning
 - 🌱 Building full-stack apps with Python, Flutter, and Firebase
 - 🤖 Interested in AI-powered applications and practical software development
