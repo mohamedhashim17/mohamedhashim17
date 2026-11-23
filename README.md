@@ -16,11 +16,13 @@
   <img src="./about.svg" alt="About Me Banner" />
 </p>
 
+- 🎓 B.E. Student at Mohamed Sathak A.J. College of Engineering (Chennai, India)
 - 💻 Focused on Artificial Intelligence, Machine Learning & Deep Learning
 - 🌱 Building full-stack apps with Python, Flutter, and Firebase
-- 🤖 Interested in AI-powered applications and practical software development
+- 🛠️ Working with Python, HTML, CSS, JavaScript, Java, MySQL, Git, GitHub, and Visual Studio Code
+- 🤖 Interested in AI-powered applications, chatbots, and practical software development
+- 📦 Experienced with CRUD applications, data structures, and menu-driven Python tools
 - 🎯 Goal: Become an AI/ML Engineer
-
 ---
 
 ## 💻 Technical Skills
