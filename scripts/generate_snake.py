@@ -2,9 +2,8 @@ import math
 import random
 from collections import deque
 
-# --- Grid & Visual Configuration ---
 COLS = 53
-ROWS = 9
+ROWS = 7
 CELL_SIZE = 12
 GAP = 3
 PADDING = 8
@@ -13,11 +12,13 @@ BG_COLOR = "#0d1117"
 CELL_COLOR = "#161b22"
 SNAKE_HEAD = "#c026d3"
 SNAKE_BODY = [
+    "#a21caf",
     "#9333ea",
     "#7e22ce",
     "#6b21a8",
 ]
 FOOD_SHADES = [
+    "#14532d",
     "#15803d",
     "#16a34a",
     "#22c55e",
@@ -25,11 +26,11 @@ FOOD_SHADES = [
     "#86efac",
 ]
 
-FOOD_COUNT = 110           # Many green boxes on the board simultaneously
+FOOD_COUNT = 135
 MAX_STEPS = 220
 STEP_DURATION = 0.14
 INITIAL_LENGTH = 5
-MAX_LENGTH = 8
+MAX_LENGTH = 5
 
 
 def get_neighbors(pos):
@@ -43,7 +44,6 @@ def get_neighbors(pos):
 
 
 def bfs_next_move(head, target, body_set):
-    """Finds the shortest path from head to target avoiding body_set."""
     queue = deque([(head, [])])
     visited = {head}
 
@@ -65,7 +65,7 @@ def bfs_next_move(head, target, body_set):
     return None
 
 
-def spawn_food_cell(occupied):
+def pick_reference_cell(occupied):
     empty = [
         (x, y)
         for x in range(COLS)
@@ -74,20 +74,29 @@ def spawn_food_cell(occupied):
     ]
     if not empty:
         return None
-    return {"pos": random.choice(empty), "color": random.choice(FOOD_SHADES)}
+
+    weights = []
+    for x, y in empty:
+        # Dense cluster across center-right (around col 12..44) with lighter edges
+        center_dist = abs(x - 27) / 27.0
+        row_factor = 1.0 - (abs(y - 3) / 4.0) * 0.35
+        w = max(0.12, (1.15 - center_dist * 0.85) * row_factor)
+        weights.append(w)
+
+    pos = random.choices(empty, weights=weights, k=1)[0]
+    color = random.choice(FOOD_SHADES)
+    return {"pos": pos, "color": color}
 
 
 def seed_initial_foods(snake_set):
     foods = []
     occupied = set(snake_set)
-
     while len(foods) < FOOD_COUNT:
-        item = spawn_food_cell(occupied)
+        item = pick_reference_cell(occupied)
         if not item:
             break
         foods.append(item)
         occupied.add(item["pos"])
-
     return foods
 
 
@@ -99,8 +108,8 @@ def nearest_food(head, foods):
 
 def simulate_game():
     random.seed()
-    start_y = 1
     start_x = COLS - 2
+    start_y = 0
     snake = [(start_x - i, start_y) for i in range(INITIAL_LENGTH)]
     foods = seed_initial_foods(set(snake))
 
@@ -128,18 +137,16 @@ def simulate_game():
         eaten_idx = next((idx for idx, f in enumerate(foods) if f["pos"] == next_pos), None)
         if eaten_idx is not None:
             foods.pop(eaten_idx)
-            if len(snake) > MAX_LENGTH:
-                snake.pop()
             occupied = set(snake) | {f["pos"] for f in foods}
-            replacement = spawn_food_cell(occupied)
+            replacement = pick_reference_cell(occupied)
             if replacement:
                 foods.append(replacement)
-        else:
-            snake.pop()
+
+        snake.pop()
 
         while len(foods) < FOOD_COUNT:
             occupied = set(snake) | {f["pos"] for f in foods}
-            extra = spawn_food_cell(occupied)
+            extra = pick_reference_cell(occupied)
             if extra:
                 foods.append(extra)
             else:
@@ -227,15 +234,10 @@ def generate_svg(frames, output_path="snake-game.svg"):
 
     svg.append('<g id="snake">')
     for seg_idx in range(MAX_LENGTH - 1, -1, -1):
-        if seg_idx == 0:
-            svg.append(
-                f'  <rect id="seg-0" width="{CELL_SIZE}" height="{CELL_SIZE}" rx="2.5" ry="2.5" fill="{SNAKE_HEAD}" />'
-            )
-        else:
-            color = SNAKE_BODY[min((seg_idx - 1) // 2, len(SNAKE_BODY) - 1)]
-            svg.append(
-                f'  <rect id="seg-{seg_idx}" width="{CELL_SIZE}" height="{CELL_SIZE}" rx="2.5" ry="2.5" fill="{color}" />'
-            )
+        fill = SNAKE_HEAD if seg_idx == 0 else SNAKE_BODY[min(seg_idx - 1, len(SNAKE_BODY) - 1)]
+        svg.append(
+            f'  <rect id="seg-{seg_idx}" width="{CELL_SIZE}" height="{CELL_SIZE}" rx="2.5" ry="2.5" fill="{fill}" />'
+        )
     svg.append("</g>")
     svg.append("</svg>")
 
