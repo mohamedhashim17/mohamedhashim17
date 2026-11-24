@@ -1,32 +1,66 @@
-name: Generate Snake Animation
+name: Generate Snake Game Animation
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    # Runs every 12 hours to generate a fresh game pattern
+    - cron: "0 */12 * * *"
   workflow_dispatch:
   push:
     branches:
       - main
+    paths:
+      - "scripts/generate_snake.py"
+      - ".github/workflows/generate-snake.yml"
+
+permissions:
+  contents: write
 
 jobs:
-  generate:
-    permissions:
-      contents: write
-
+  build-snake:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Generate Snake
-        uses: Platane/snk/svg-only@v3
-        with:
-          github_user_name: mohamedhashim17
-          outputs: |
-            dist/github-snake.svg
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Deploy Snake
-        uses: crazy-max/ghaction-github-pages@v3.1.0
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          target_branch: output
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          python-version: "3.11"
+
+      - name: Generate Snake Game SVG
+        run: python scripts/generate_snake.py
+
+      - name: Ensure README image link is up to date
+        run: |
+          REPO="${{ github.repository }}"
+          IMAGE_URL="https://raw.githubusercontent.com/${REPO}/output/snake-game.svg"
+          
+          if grep -q "<!-- SNAKE-GAME-START -->" README.md; then
+            python -c "
+          import re
+          with open('README.md', 'r', encoding='utf-8') as f:
+              content = f.read()
+          replacement = f'<!-- SNAKE-GAME-START -->\n<p align=\"center\">\n  <img src=\"${IMAGE_URL}\" alt=\"Animated Snake Game\" width=\"100%\" />\n</p>\n<!-- SNAKE-GAME-END -->'
+          updated = re.sub(r'<!-- SNAKE-GAME-START -->.*?<!-- SNAKE-GAME-END -->', replacement, content, flags=re.DOTALL)
+          with open('README.md', 'w', encoding='utf-8') as f:
+              f.write(updated)
+          "
+          fi
+
+      - name: Commit updated README if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git diff --staged --quiet || (git commit -m "chore: update snake game README link" && git push)
+
+      - name: Deploy SVG to output branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: output
+          publish_dir: .
+          keep_files: false
+          allow_empty_commit: false
+          exclude_assets: ".github,scripts,README.md"
