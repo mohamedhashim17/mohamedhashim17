@@ -2,9 +2,9 @@ import math
 import random
 from collections import deque
 
-# --- Grid & Visual Configuration (Matched to video_1.mp4) ---
+# --- Grid & Visual Configuration ---
 COLS = 53
-ROWS = 8
+ROWS = 9
 CELL_SIZE = 12
 GAP = 3
 PADDING = 8
@@ -25,7 +25,7 @@ FOOD_SHADES = [
     "#86efac",
 ]
 
-FOOD_COUNT = 85            # Many green boxes active across the grid
+FOOD_COUNT = 110           # Many green boxes on the board simultaneously
 MAX_STEPS = 220
 STEP_DURATION = 0.14
 INITIAL_LENGTH = 5
@@ -65,7 +65,7 @@ def bfs_next_move(head, target, body_set):
     return None
 
 
-def spawn_food_cell(occupied, bias_center=True):
+def spawn_food_cell(occupied):
     empty = [
         (x, y)
         for x in range(COLS)
@@ -74,23 +74,7 @@ def spawn_food_cell(occupied, bias_center=True):
     ]
     if not empty:
         return None
-
-    if bias_center and random.random() < 0.75:
-        center_x = COLS * 0.52
-        center_y = (ROWS - 1) * 0.5
-        weighted = [
-            cell
-            for cell in empty
-            if abs(cell[0] - center_x) <= COLS * 0.34 and abs(cell[1] - center_y) <= ROWS * 0.5
-        ]
-        if weighted:
-            pos = random.choice(weighted)
-        else:
-            pos = random.choice(empty)
-    else:
-        pos = random.choice(empty)
-
-    return {"pos": pos, "color": random.choice(FOOD_SHADES)}
+    return {"pos": random.choice(empty), "color": random.choice(FOOD_SHADES)}
 
 
 def seed_initial_foods(snake_set):
@@ -98,7 +82,7 @@ def seed_initial_foods(snake_set):
     occupied = set(snake_set)
 
     while len(foods) < FOOD_COUNT:
-        item = spawn_food_cell(occupied, bias_center=True)
+        item = spawn_food_cell(occupied)
         if not item:
             break
         foods.append(item)
@@ -147,7 +131,7 @@ def simulate_game():
             if len(snake) > MAX_LENGTH:
                 snake.pop()
             occupied = set(snake) | {f["pos"] for f in foods}
-            replacement = spawn_food_cell(occupied, bias_center=True)
+            replacement = spawn_food_cell(occupied)
             if replacement:
                 foods.append(replacement)
         else:
@@ -155,7 +139,7 @@ def simulate_game():
 
         while len(foods) < FOOD_COUNT:
             occupied = set(snake) | {f["pos"] for f in foods}
-            extra = spawn_food_cell(occupied, bias_center=True)
+            extra = spawn_food_cell(occupied)
             if extra:
                 foods.append(extra)
             else:
