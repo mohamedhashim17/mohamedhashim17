@@ -31,6 +31,50 @@
 <!-- SNAKE-GAME-END -->
 
 -----
+-----
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="500">
+
+<img src="https://capsule-render.vercel.app/api?type=rounded&color=0:141E30,100:243B55&height=180&section=header&text=MOHAMED%20HASHIM&fontSize=35&fontColor=ffffff" width="100%"/>
+
+### Mohamed Hashim
+**@mohamedhashim17**
+
+🎯 Aspiring AI/ML Engineer
+
+<br>
+
+<img src="https://github-readme-stats.vercel.app/api?username=mohamedhashim17&show_icons=true&theme=tokyonight&hide_border=true" width="100%"/>
+
+<br>
+
+**💻 Technical Skills**
+
+`Python` `Java` `HTML` `CSS` `JavaScript`
+
+`Machine Learning` `Artificial Intelligence`
+
+<br>
+
+**🔥 Developer Journey**
+
+<img src="https://streak-stats.demolab.com?user=mohamedhashim17&theme=tokyonight&hide_border=true" width="100%"/>
+
+<br>
+
+**🚀 Goal: Become an AI/ML Engineer**
+
+</td>
+</tr>
+</table>
+
+</div>
+
+---
 ## 💻 Technical Skills
 
 <p align="center">
