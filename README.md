@@ -23,8 +23,14 @@
 - 📦 Experienced with CRUD applications, data structures, and menu-driven Python tools
 - 🎯 Goal: Become an AI/ML Engineer
 ---
-<img src="https://camo.githubusercontent.com/589af5d…/6874747…" alt="Snake animation" data-canonical-src="https://profile-readme-generator.com/assets/snake.svg" style="max-width: 100%;">
+---
+<h2 align="center">🐍 My GitHub Contribution Snake</h2>
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mohamedhashim17/mohamedhashim17/output/github-snake.svg" />
+</p>
+
+-----
 ## 💻 Technical Skills
 
 <p align="center">
