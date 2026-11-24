@@ -24,11 +24,11 @@
 - 🎯 Goal: Become an AI/ML Engineer
 ---
 ---
-<h2 align="center">🐍 My GitHub Contribution Snake</h2>
-
+<!-- SNAKE-GAME-START -->
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mohamedhashim17/mohamedhashim17/output/github-snake.svg" />
+  <img src="https://raw.githubusercontent.com/mohamedhashim17/mohamedhashim17/output/snake-game.svg" alt="Animated Snake Game" width="100%" />
 </p>
+<!-- SNAKE-GAME-END -->
 
 -----
 ## 💻 Technical Skills
